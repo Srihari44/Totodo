@@ -7,7 +7,6 @@ const Login = () => {
   const user = useContext(UserContext);
   const eRef = useRef(null);
   const pRef = useRef(null);
-  console.log(process.env.REACT_FIREBASE_API_KEY);
   const formHandler = async (event) => {
     event.preventDefault();
     try {
