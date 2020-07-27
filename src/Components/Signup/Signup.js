@@ -18,26 +18,74 @@ const Signup = () => {
       })
   };
   return (
-    <div className="Signupform">
-      <form onSubmit={formHandler}>
-        <div className="input-group">
-          <label>Username: </label>
-          <input type="text" placeholder="Your Name" />
-        </div>
-        <div className="input-group">
-          <label>Email: </label>
-          <input ref={eRef} type="email" placeholder="test@example.com" />
-        </div>
-        <div className="input-group">
-          <label>Password: </label>
-          <input ref={pRef} type="password" placeholder="Enter your password" />
-        </div>
-        <button type="submit">Submit</button>
-        <hr />
-        <button onClick={signInWithGoogle}>Sign in with google</button>
-      </form>
+    <React.Fragment>
+      <div className="w-full max-w-xs">
+        <form
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          onSubmit={formHandler}
+        >
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="username"
+            >
+              User name
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="text"
+              placeholder="Your name"
+              ref={eRef}
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="username"
+            >
+              E-mail
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="email"
+              placeholder="test@example.com"
+              ref={eRef}
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="password"
+              placeholder="*********"
+              ref={pRef}
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="button"
+            >
+              Sign Up
+            </button>
+          </div>
+          <p className="text-gray-700 text-lg font-bold mb-2 text-center">Or</p>
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button"
+            onClick={signInWithGoogle}
+          >
+            Sign In with Google
+          </button>
+        </form>
+      </div>
       {rstate ? <Redirect to="/" /> : null}
-    </div>
+    </React.Fragment>
   );
 };
 
