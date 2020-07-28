@@ -1,10 +1,9 @@
 import React from "react";
-import Navbar from "./Components/Navbar/Navbar";
-import Login from "./Components/Login/Login";
-import Signup from "./Components/Signup/Signup";
-import UserProfile from "./Components/UserProfile/UserProfile";
+import Navbar from "./Components/Navbar";
+import Login from "./Components/Login";
+import Signup from "./Components/Signup";
+import UserProfile from "./Components/UserProfile";
 import { Switch, Route } from "react-router-dom";
-import "./App.css";
 import Todo from "./TodoApp/Todo";
 import UserProvider from "./Providers/UserProvider";
 
@@ -13,7 +12,7 @@ function App() {
     <React.Fragment>
       <UserProvider>
         <Navbar />
-        <div className=" flex flex-col justify-center">
+        <div className="container flex flex-col justify-center items-center py-12 px-6">
           <Switch>
             <Route path="/" exact component={Todo} />
             <Route path="/login" component={Login} />

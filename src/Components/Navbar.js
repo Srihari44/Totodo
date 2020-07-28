@@ -1,6 +1,6 @@
 import React, { useContext,useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { UserContext } from "../../Providers/UserProvider";
+import { UserContext } from "../Providers/UserProvider";
 
 const Navbar = () => {
   const user = useContext(UserContext);
@@ -11,17 +11,17 @@ const Navbar = () => {
   }
   return (
     <header>
-      <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+      <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <span className="font-semibold text-xl tracking-tight">Totodo</span>
         </div>
         <div className="block lg:hidden">
           <button
-            className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+            className="flex items-center px-3 py-2 border rounded text-blue-200 border-white-400 transition duration-500 ease-in-out focus:outline-none hover:bg-black-700"
             onClick={toggle}
           >
             <svg
-              className="fill-current h-3 w-3"
+              className="fill-current h-3 w-3 "
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -32,7 +32,7 @@ const Navbar = () => {
         </div>
         <div
           ref={menuRef}
-          className="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden"
+          className="w-full block flex-grow lg:flex lg:items-center lg:w-auto hidden "
         >
           <div className="text-sm lg:flex-grow">
             <NavLink

@@ -1,33 +1,52 @@
 import React, { useRef, useContext } from "react";
-import { UserContext } from "../../Providers/UserProvider";
+import { UserContext } from "../Providers/UserProvider";
+import { auth, signInWithGoogle } from "../Services/firebase";
 import { withRouter, Redirect } from "react-router-dom";
-import { auth, signInWithGoogle } from "../../Services/firebase";
 
-const Login = () => {
+const Signup = () => {
   const user = useContext(UserContext);
+
   const eRef = useRef(null);
   const pRef = useRef(null);
+
   const formHandler = async (event) => {
     event.preventDefault();
-    try {
-      await auth.signInWithEmailAndPassword(
-        eRef.current.value,
-        pRef.current.value
-      );
-    } catch (error) {
-      console.log("Error Logging in " + error);
-    }
+    await auth
+      .createUserWithEmailAndPassword(eRef.current.value, pRef.current.value)
+      .catch((error) => {
+        console.log("Error signing up " + error);
+      })
   };
   return (
     <React.Fragment>
       {user ? (
         <Redirect to="/" />
       ) : (
-        <div className="w-full max-w-xs">
+        <div className="max-w-xs">
+          <h2
+            className="text-3xl font-semilight text-center mb-2"
+            style={{ marginTop: "-25px" }}
+          >
+            Signup quick!
+          </h2>
           <form
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
             onSubmit={formHandler}
           >
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="username"
+              >
+                User name
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="text"
+                placeholder="Your name"
+                ref={eRef}
+              />
+            </div>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -61,12 +80,10 @@ const Login = () => {
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="button"
               >
-                Sign In
+                Sign Up
               </button>
             </div>
-            <p
-              className="text-gray-700 text-lg font-bold mb-2 text-center"
-            >
+            <p className="text-gray-700 text-xl font-bold m-2 text-center">
               Or
             </p>
             <button
@@ -81,6 +98,5 @@ const Login = () => {
       )}
     </React.Fragment>
   );
-};
-
-export default withRouter(Login);
+}
+export default withRouter(Signup);

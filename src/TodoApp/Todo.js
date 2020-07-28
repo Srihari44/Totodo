@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
 import { withRouter, Redirect } from 'react-router-dom';
-import ItemContainer from "./Components/ItemContainer/ItemContainer";
+import ItemContainer from "./Components/ItemContainer";
 import { auth } from '../Services/firebase'
 import { UserContext } from '../Providers/UserProvider'
 
@@ -36,8 +36,9 @@ function TodoApp() {
     <React.Fragment>
       {user ? (
         <div className="container">
+          <h2 className="text-2xl font-semilight text-center mb-4" style={{marginTop:"-25px"}}>Welcome {user.displayName}!</h2>
           <form
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            className="bg-white shadow-md rounded px-8 pb-8 mb-4"
             onSubmit={formHandler}
           >
             <div className="input-group mb-4">
@@ -48,6 +49,7 @@ function TodoApp() {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 ref={wRef}
                 type="text"
+                required
               />
             </div>
             <div className="input-group mb-4">
@@ -64,7 +66,7 @@ function TodoApp() {
               <label className="block text-gray-700 text-sm font-bold mb-2">
                 Enter Time:
               </label>
-              <input ref={tRef} type="time" />
+              <input ref={tRef} type="time" required/>
             </div>
             <div className="input-group mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -79,7 +81,7 @@ function TodoApp() {
               Add new
             </button>
           </form>
-          {state.data ? (
+          {!state.data.empty ? (
             <ItemContainer data={state.data} deleted={deleteHandler} />
           ) : null}
           <div className="flex justify-center mt-16 mb-8">
